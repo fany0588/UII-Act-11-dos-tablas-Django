@@ -1,0 +1,703 @@
+/* Tu CSS original que me proporcionaste */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    line-height: 1.6;
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-header {
+    background: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-bottom: 1px solid #eee;
+}
+
+.main-header h1 a {
+    color: #4a5568;
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: 700;
+    display: flex; /* Para alinear el logo y el texto */
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.header-logo { /* Para el logo de la paleta */
+    height: 30px; /* Ajusta el tamaño según necesites */
+    width: auto;
+}
+
+
+.main-nav a {
+    margin-left: 1.5rem;
+    color: #4a5568;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.main-nav a:hover {
+    color: #667eea;
+}
+
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Estas clases artist-grid, artist-card, etc. eran de tu CSS original.
+   Las hemos adaptado o reinterpretado para los productos en las plantillas.
+   Mantenerlas aquí si planeas usarlas para otros fines o simplemente las dejamos.
+   Las nuevas clases como .product-grid se usarán para productos. */
+.artist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    list-style: none;
+}
+
+.artist-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.artist-card:hover {
+    transform: translateY(-5px);
+}
+
+.artist-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.artist-img, .artist-placeholder {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.artist-placeholder {
+    background: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+}
+
+.artist-card h3 {
+    padding: 1rem;
+    font-size: 1.2rem;
+    color: #2d3748;
+}
+
+.artist-nationality {
+    color: #718096;
+    font-size: 0.9rem;
+    padding: 0 1rem 1rem;
+}
+
+.artist-detail {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    padding: 2rem;
+}
+
+.artist-banner {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+.detail-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #e2e8f0;
+}
+
+.detail-placeholder {
+    width: 180px;
+    height: 180px;
+    background: #e2e8f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+}
+
+.artist-info h1 {
+    font-size: 2.5rem;
+    color: #2d3748;
+}
+
+.detail-actions {
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.songs-section { /* Se usa para la sección de proveedores */
+    margin-top: 3rem;
+}
+
+.songs-section h2 {
+    font-size: 2rem;
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.song-list {
+    list-style: none;
+    counter-reset: song-counter;
+    padding: 0;
+}
+
+.song-list li {
+    counter-increment: song-counter;
+    padding: 0.8rem 1rem;
+    background: #f7fafc;
+    border-left: 4px solid #667eea;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    display: flex; /* Para alinear el contenido de la lista de proveedores */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.song-list li::before {
+    content: counter(song-counter) ". ";
+    color: #667eea;
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+
+/* Tus estilos para botones, los hemos usado directamente */
+.btn {
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-decoration: none;
+    display: inline-flex; /* Para alinear íconos */
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-sm { /* Para botones más pequeños */
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background: #667eea;
+    color: white;
+}
+
+.btn-primary:hover { background: #5a67d8; }
+
+.btn-secondary {
+    background: #718096;
+    color: white;
+}
+
+.btn-secondary:hover { background: #4a5568; }
+
+.btn-danger {
+    background: #e53e3e;
+    color: white;
+}
+
+.btn-danger:hover { background: #c53030; }
+
+.btn-success { /* Añadido para el botón "Nuevo Producto" */
+    background: #28a745;
+    color: white;
+}
+
+.btn-success:hover { background: #218838; }
+
+
+.main-footer {
+    text-align: center;
+    padding: 1.5rem;
+    background: white;
+    color: #718096;
+    font-size: 0.9rem;
+    margin-top: auto;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+}
+
+/* AÑADIDOS para Mi Paletería */
+
+/* Estilos para el formulario de búsqueda en el header */
+.search-form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.search-form input[type="search"] {
+    padding: 0.6rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    width: 200px; /* Ajusta según necesidad */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.search-form input[type="search"]:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.25);
+}
+
+.search-form button {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.search-form button:hover {
+    background: #5a67d8;
+}
+
+/* Estilos para que los elementos de "producto" se parezcan a tus "artist-card" */
+.product-grid { /* Reemplaza a .row de Bootstrap */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Ajustado para tarjetas de producto */
+    gap: 1.5rem;
+    list-style: none; /* Si usas ul para el grid */
+    margin: 0;
+    padding: 0;
+}
+
+.product-card { /* Reemplaza a .card de Bootstrap */
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    height: 100%; /* Para que todas las tarjetas tengan la misma altura en un grid */
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    flex-grow: 1; /* Permite que el contenido del enlace crezca */
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-card .card-body { /* Similar a tu artist-card h3/p */
+    padding: 1rem;
+    flex-grow: 1;
+}
+
+.product-card .card-title {
+    font-size: 1.3rem;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.product-card .card-text {
+    font-size: 0.9rem;
+    color: #718096;
+    margin-bottom: 0.5rem;
+}
+
+.fw-bold { font-weight: bold; }
+.text-primary { color: #667eea; } /* Usa tus colores */
+.text-muted { color: #718096; }
+
+/* Estilos para los badges (insignias de stock) */
+.badge {
+    display: inline-block;
+    padding: 0.3em 0.6em;
+    font-size: 0.75em;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    margin-top: 0.5rem; /* Para separarlos del texto */
+}
+
+/* Colores de badges inspirados en Bootstrap pero usando tu paleta */
+.bg-warning { background-color: #ffc107; color: #333; } /* Amarillo */
+.bg-danger { background-color: #e53e3e; color: white; } /* Rojo */
+.bg-info { background-color: #4dc0b5; color: white; } /* Turquesa */
+.bg-success { background-color: #38a169; color: white; } /* Verde */
+.bg-secondary { background-color: #a0aec0; color: white; } /* Gris */
+.text-dark { color: #2d3748; } /* Para badges con fondo claro */
+
+.product-card .card-footer { /* Para los botones de editar/borrar */
+    padding: 1rem;
+    border-top: 1px solid #eee;
+    background: #f7fafc;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+/* Mensajes de información y búsqueda */
+.query-results {
+    font-size: 1.1rem;
+    color: #4a5568;
+    margin-bottom: 1.5rem;
+}
+
+.alert-message { /* Para mensajes de advertencia o info */
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 1px solid transparent;
+}
+.alert-warning-custom {
+    background-color: #fffbe6;
+    color: #9b720b;
+    border-color: #ffeeba;
+}
+.no-results-message {
+    padding: 1.5rem;
+    background: #f7fafc;
+    border-left: 4px solid #667eea;
+    border-radius: 8px;
+    color: #4a5568;
+    font-size: 1.1rem;
+    text-align: center;
+}
+.link-style {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+}
+.link-style:hover {
+    text-decoration: underline;
+}
+
+
+/* Estilos para detalle_producto */
+.detail-container { /* Reemplaza a .card .row .g-0 */
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: flex; /* Para la distribución de la imagen y los detalles */
+    margin-bottom: 2rem;
+    overflow: hidden; /* Para las esquinas redondeadas de la imagen */
+}
+
+.detail-image-col {
+    flex: 0 0 40%; /* 40% del ancho para la imagen */
+    max-width: 40%;
+}
+
+.detail-content-col {
+    flex: 0 0 60%; /* 60% del ancho para el contenido */
+    max-width: 60%;
+    padding: 2rem;
+}
+
+.detail-img { /* Tu imagen de detalle */
+    width: 100%;
+    height: 100%; /* Ajusta la altura para que ocupe todo el espacio */
+    object-fit: cover;
+    border-radius: 12px 0 0 12px; /* Solo esquinas izquierdas redondeadas */
+}
+
+.detail-img-placeholder { /* Si no hay imagen */
+    width: 100%;
+    height: 100%;
+    background: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6rem;
+    color: #a0aec0;
+    border-radius: 12px 0 0 12px;
+}
+
+.detail-title {
+    font-size: 2.5rem; /* display-5 */
+    color: #2d3748;
+    margin-bottom: 1rem;
+}
+
+.detail-description {
+    font-size: 1.1rem; /* lead */
+    color: #4a5568;
+    margin-bottom: 1.5rem;
+}
+
+.detail-list { /* list-group list-group-flush */
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-list-item { /* list-group-item */
+    padding: 0.8rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+.detail-list-item:last-child { border-bottom: none; } /* Remover último borde */
+
+.detail-actions-group { /* d-flex justify-content-start gap-2 */
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Estilos para formularios */
+.form-card { /* Para envolver el formulario, similar al card de Bootstrap */
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 2rem auto; /* Centrar y margen */
+    overflow: hidden;
+}
+
+.form-card-header { /* card-header bg-primary text-white */
+    background: #667eea; /* Tu color primary */
+    color: white;
+    padding: 1.5rem 2rem;
+}
+
+.form-card-header h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.form-card-body { /* card-body */
+    padding: 2rem;
+}
+
+.form-group { /* mb-3 */
+    margin-bottom: 1.5rem;
+}
+
+.form-label { /* form-label */
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.form-control { /* Para input, textarea, select */
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.25);
+}
+
+.form-text { /* help_text */
+    font-size: 0.85rem;
+    color: #718096;
+    margin-top: 0.25rem;
+}
+
+.form-errors { /* alert alert-danger */
+    background: #fde8e8;
+    color: #e53e3e;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    border: 1px solid #fbd3d3;
+    font-size: 0.9rem;
+}
+
+.form-actions { /* d-flex justify-content-end gap-2 */
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Estilos para la confirmación de borrado */
+.confirm-delete-card { /* card shadow-sm mx-auto */
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    max-width: 500px;
+    margin: 2rem auto;
+    overflow: hidden;
+    text-align: center;
+}
+
+.confirm-delete-header { /* card-header bg-danger text-white */
+    background: #e53e3e;
+    color: white;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.confirm-delete-header h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.confirm-delete-body { /* card-body */
+    padding: 2rem;
+}
+
+.confirm-delete-body .lead {
+    font-size: 1.2rem;
+    color: #4a5568;
+    margin-bottom: 1rem;
+}
+
+.confirm-delete-body h3 {
+    font-size: 2rem;
+    color: #e53e3e;
+    margin-bottom: 1.5rem;
+}
+
+.confirm-delete-alert { /* alert alert-warning */
+    background: #fffbe6;
+    color: #9b720b;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ffeeba;
+    margin-bottom: 2rem;
+}
+
+.confirm-delete-actions { /* d-flex justify-content-center gap-3 */
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        align-items: flex-start; /* Ajusta para mobile */
+        gap: 1rem;
+    }
+    .main-header h1 { width: 100%; text-align: center; }
+    .main-nav {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    .main-nav a { margin: 0.5rem 0; }
+    .search-form { width: 100%; justify-content: center; }
+    .search-form input { width: 100%; }
+
+    .main-content {
+        padding: 1rem;
+    }
+
+    .detail-container {
+        flex-direction: column;
+    }
+    .detail-image-col, .detail-content-col {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .detail-img, .detail-img-placeholder {
+        border-radius: 12px 12px 0 0; /* Redondea las esquinas superiores */
+        height: 250px; /* Ajusta la altura en mobile */
+    }
+    .detail-content-col {
+        padding: 1.5rem;
+    }
+    .detail-actions-group {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    .detail-actions-group .btn {
+        width: 100%;
+    }
+
+    .form-card, .confirm-delete-card {
+        margin: 1rem auto;
+    }
+    .form-card-body, .confirm-delete-body {
+        padding: 1.5rem;
+    }
+    .confirm-delete-actions {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    .confirm-delete-actions .btn {
+        width: 100%;
+    }
+}

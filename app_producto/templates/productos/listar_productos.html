@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}Productos | Mi Paletería{% endblock %}
+
+{% block contenido %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Listado de Productos</h2>
+    <a href="{% url 'app_producto:crear_producto' %}" class="btn btn-success">
+        <i class="bi bi-plus-circle me-2"></i> Nuevo Producto
+    </a>
+</div>
+
+{% if query %}
+    <p class="lead">Resultados para: "<strong>{{ query }}</strong>"</p>
+    {% if not productos %}
+        <div class="alert alert-warning" role="alert">
+            No se encontraron productos que coincidan con "{{ query }}".
+        </div>
+    {% endif %}
+{% endif %}
+
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for producto in productos %}
+    <div class="col">
+        <div class="card h-100 shadow-sm">
+            <a href="{% url 'app_producto:detalle_producto' producto.id %}" class="text-decoration-none text-dark">
+                {% if producto.foto %}
+                    <img src="{{ producto.foto.url }}" class="card-img-top img-fluid" alt="Imagen de {{ producto.nombre }}" style="height: 200px; object-fit: cover;">
+                {% else %}
+                    <img src="{% static 'img/producto_placeholder.png' %}" class="card-img-top img-fluid" alt="Imagen no disponible" style="height: 200px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    <p class="card-text text-muted mb-1">Categoría: {{ producto.categoria|default:"Sin categoría" }}</p>
+                    <p class="card-text fw-bold text-primary">${{ producto.precio|floatformat:2 }}</p>
+                    {% if producto.stock <= 5 and producto.stock > 0 %}
+                        <span class="badge bg-warning text-dark">¡Pocas unidades! ({{ producto.stock }})</span>
+                    {% elif producto.stock == 0 %}
+                        <span class="badge bg-danger">Sin Stock</span>
+                    {% else %}
+                        <span class="badge bg-info text-dark">Stock: {{ producto.stock }}</span>
+                    {% endif %}
+                </div>
+            </a>
+            <div class="card-footer bg-transparent border-0 d-flex justify-content-end">
+                <a href="{% url 'app_producto:editar_producto' producto.id %}" class="btn btn-sm btn-outline-primary me-2">Editar</a>
+                <a href="{% url 'app_producto:borrar_producto' producto.id %}" class="btn btn-sm btn-outline-danger">Borrar</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-info text-center" role="alert">
+            No hay productos registrados. <a href="{% url 'app_producto:crear_producto' %}" class="alert-link">¡Crea uno ahora!</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

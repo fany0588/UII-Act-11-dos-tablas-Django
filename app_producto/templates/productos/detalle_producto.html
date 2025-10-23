@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}{{ producto.nombre }} | Mi Paletería{% endblock %}
+
+{% block contenido %}
+<div class="card shadow-lg my-4">
+    <div class="row g-0">
+        <div class="col-md-5">
+            {% if producto.foto %}
+                <img src="{{ producto.foto.url }}" class="img-fluid rounded-start detail-img" alt="Imagen de {{ producto.nombre }}">
+            {% else %}
+                <img src="{% static 'img/producto_placeholder.png' %}" class="img-fluid rounded-start detail-img" alt="Imagen no disponible">
+            {% endif %}
+        </div>
+        <div class="col-md-7">
+            <div class="card-body p-4">
+                <h1 class="card-title display-5 mb-3">{{ producto.nombre }}</h1>
+                <p class="card-text lead">{{ producto.descripcion|default:"Sin descripción detallada." }}</p>
+
+                <ul class="list-group list-group-flush mb-4">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <strong>Precio:</strong>
+                        <span class="fs-4 fw-bold text-primary">${{ producto.precio|floatformat:2 }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <strong>Stock Disponible:</strong>
+                        {% if producto.stock <= 5 and producto.stock > 0 %}
+                            <span class="badge bg-warning text-dark fs-6">{{ producto.stock }} unidades (¡Pocas!)</span>
+                        {% elif producto.stock == 0 %}
+                            <span class="badge bg-danger fs-6">Agotado</span>
+                        {% else %}
+                            <span class="badge bg-info text-dark fs-6">{{ producto.stock }} unidades</span>
+                        {% endif %}
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <strong>Categoría:</strong>
+                        <span class="text-muted">{{ producto.categoria|default:"No especificada" }}</span>
+                    </li>
+                </ul>
+
+                <div class="d-flex justify-content-start gap-2 mb-3">
+                    <a href="{% url 'app_producto:editar_producto' producto.id %}" class="btn btn-outline-primary btn-lg">
+                        <i class="bi bi-pencil-square me-2"></i> Editar Producto
+                    </a>
+                    <a href="{% url 'app_producto:borrar_producto' producto.id %}" class="btn btn-outline-danger btn-lg">
+                        <i class="bi bi-trash me-2"></i> Borrar Producto
+                    </a>
+                    <a href="{% url 'app_producto:listar_productos' %}" class="btn btn-outline-secondary btn-lg">
+                        <i class="bi bi-arrow-left-circle me-2"></i> Volver a la Lista
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="mt-5">
+    <h3>Proveedores de este Producto</h3>
+    {% if producto.proveedores.all %}
+    <ul class="list-group">
+        {% for proveedor in producto.proveedores.all %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{% url 'app_producto:detalle_proveedor' proveedor.id %}" class="text-decoration-none fw-bold">
+                {{ proveedor.nombre_empresa }}
+            </a>
+            <span class="badge bg-secondary rounded-pill">{{ proveedor.tipo_producto|default:"Tipo no especificado" }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <div class="alert alert-info" role="alert">
+        Este producto no tiene proveedores asociados.
+    </div>
+    {% endif %}
+</section>
+
+{% endblock %}

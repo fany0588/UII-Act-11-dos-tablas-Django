@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}Eliminar Producto | Mi Paletería{% endblock %}
+
+{% block contenido %}
+<div class="card shadow-sm mx-auto" style="max-width: 500px;">
+    <div class="card-header bg-danger text-white">
+        <h2 class="card-title mb-0"><i class="bi bi-exclamation-triangle-fill me-2"></i> Confirmar Eliminación</h2>
+    </div>
+    <div class="card-body">
+        <p class="lead">¿Estás seguro de que deseas eliminar el producto: </p>
+        <h3 class="text-danger fw-bold text-center mb-4">"{{ producto.nombre }}"?</h3>
+        
+        <p class="alert alert-warning text-center">
+            Esta acción es irreversible y eliminará todos los datos asociados al producto.
+        </p>
+
+        <form method="post" class="d-flex justify-content-center gap-3 mt-4">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-lg">
+                <i class="bi bi-trash-fill me-2"></i> Sí, Eliminar
+            </button>
+            <a href="{% url 'app_producto:detalle_producto' producto.id %}" class="btn btn-secondary btn-lg">
+                <i class="bi bi-x-circle-fill me-2"></i> Cancelar
+            </a>
+        </form>
+    </div>
+</div>
+{% endblock %}
